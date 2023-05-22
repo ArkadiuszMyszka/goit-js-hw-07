@@ -1,1 +1,1 @@
-https://arkadiuszmyszka.github.io/goit-js-hw-07/src/
+https://arkadiuszmyszka.github.io/goit-js-hw-07
