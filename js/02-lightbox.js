@@ -1,3 +1,4 @@
+/* eslint-disable vars-on-top */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
 // eslint-disable-next-line import/extensions
@@ -13,12 +14,12 @@ function galleryCreate() {
     const li = document.createElement("li");
     const a = document.createElement("a");
     const img = document.createElement("img");
-    li.classList.add("gallery__item");
-    a.classList.add("gallery__link");
+
+    a.classList.add("gallery__item");
     img.classList.add("gallery__image");
     a.setAttribute("href", original);
     img.setAttribute("src", preview);
-    img.setAttribute("data-source", original);
+
     img.setAttribute("alt", description);
 
     li.append(a);
@@ -27,26 +28,11 @@ function galleryCreate() {
   });
   gallery.append(...galleryArray);
 }
-
-gallery.addEventListener("click", (event) => {
-  event.preventDefault();
-  if (event.target.nodeName === "IMG") {
-    const instance = basicLightbox.create(`<img src="${event.target.dataset.source}">`);
-
-    instance.show();
-
-    const visible = basicLightbox.visible();
-    if (visible) {
-      document.addEventListener("keyup", ({ key }) => {
-        if (key === "Escape") {
-          instance.close();
-        }
-      });
-    }
-  } else {
-    // eslint-disable-next-line no-useless-return
-    return;
-  }
-});
-
 galleryCreate();
+
+// eslint-disable-next-line prefer-const, no-unused-vars
+let lightbox = new SimpleLightbox(".gallery li a", {
+  captionsData: "alt",
+  captionPosition: "outside",
+  captionDelay: 250,
+});
